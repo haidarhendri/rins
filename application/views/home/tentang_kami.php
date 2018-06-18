@@ -117,7 +117,7 @@
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="<?php echo base_url();?>" class="active">Home</a></li>
-								<li class="dropdown"><a href="#">Category<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown"><a href="#">Kategori<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                     	<?php
                                     	foreach ($kategori->result_array() as $value) { ?>
@@ -151,7 +151,7 @@
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="left-sidebar">
-						<h2>Category</h2>
+						<h2>Kategori</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
 
 
