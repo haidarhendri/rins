@@ -4,8 +4,8 @@ class admin_model extends CI_Model {
 
 	function CekAdminLogin($data) {
 
-		$cek['username'] = mysql_real_escape_string($data['username']);
-		$cek['password'] = md5(mysql_real_escape_string($data['password']));
+		$cek['username'] = mysqli_real_escape_string($data['username']);
+		$cek['password'] = md5(mysqli_real_escape_string($data['password']));
 
 		$ceklogin = $this->db->get_where('tbl_admin',$cek);
 
@@ -323,7 +323,7 @@ class admin_model extends CI_Model {
 	}
 
 	function SimpanBukuTamuAdd($email,$judul,$isi_hubungi_kami_kirim) {
-		return $this->db->query("insert into tbl_hubungi_kami_kirim values('','$email','$judul','$isi_hubungi_kami_kirim')");	
+		return $this->db->query("insert into tbl_hubungi_kami_kirim values('','$email','$judul','$isi_hubungi_kami_kirim')");
 	}
 
 	function GetBukuTamuKirim() {
@@ -337,7 +337,7 @@ class admin_model extends CI_Model {
 	function DetailBukuTamuKirim($id) {
 		return $this->db->query("select * from tbl_hubungi_kami_kirim where id_hubungi_kami_kirim='$id'");
 	}
-	
+
 	//Akhir Buku Tamu
 
 
@@ -380,5 +380,5 @@ class admin_model extends CI_Model {
 
 	//Akhir Transaki
 
-	
+
 }
