@@ -13,7 +13,7 @@
     <meta name="keyword" content="<?php echo $keyword;?>">
     <meta name="description" content="<?php echo $description;?>">
     <meta name="author" content="">
-    <title>Home | <?php echo $tittle;?></title>
+    <title>Produk | <?php echo $tittle;?></title>
     <link href="<?php echo base_url();?>asset/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url();?>asset/css/font-awesome.min.css" rel="stylesheet">
     <link href="<?php echo base_url();?>asset/css/prettyPhoto.css" rel="stylesheet">
@@ -24,7 +24,7 @@
     <!--[if lt IE 9]>
     <script src="<?php echo base_url();?>asset/js/html5shiv.js"></script>
     <script src="<?php echo base_url();?>asset/js/respond.min.js"></script>
-    <![endif]-->       
+    <![endif]-->
     <!-- <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
@@ -38,7 +38,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-6">
-						<?php 
+						<?php
 						foreach ($kontak->result_array() as $value) {
 							$phone = $value['phone'];
 							$email = $value['email'];
@@ -53,7 +53,7 @@
 					</div>
 					<div class="col-sm-6">
 						<div class="social-icons pull-right">
-							<?php 
+							<?php
 							foreach ($sosial_media->result_array() as $value) {
 								$tw = $value['tw'];
 								$fb = $value['fb'];
@@ -70,7 +70,7 @@
 				</div>
 			</div>
 		</div><!--/header_top-->
-		
+
 		<div class="header-middle"><!--header-middle-->
 			<div class="container">
 				<div class="row">
@@ -82,19 +82,19 @@
 							}
 
 							?>
-							<a href="<?php echo base_url();?>"><img src="<?php echo base_url();?>images/logo/<?php echo $logo;?>" alt="Adriano MX Online Shop" /></a>
+							<a href="<?php echo base_url();?>"><img src="<?php echo base_url();?>images/logo/<?php echo $logo;?>" alt="PT. RINS Shop" /></a>
 						</div>
 						<div class="btn-group pull-right">
-							
-							
-							
+
+
+
 						</div>
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<li><a href="<?php echo base_url();?>home/tentang_kami"> Tentang Kami</a></li>
-								<li><a href="<?php echo base_url();?>home/cara_belanja"> Cara Belanja</a></li>
+								<li><a href="<?php echo base_url();?>home/cara_belanja"> Petunjuk Belanja</a></li>
 								<li><a href="<?php echo base_url();?>home/hubungi_kami"> Hubungi Kami</a></li>
 								<li><a href="<?php echo base_url();?>home/keranjang"> Keranjang Belanja</a></li>
 							</ul>
@@ -103,7 +103,7 @@
 				</div>
 			</div>
 		</div><!--/header-middle-->
-	
+
 		<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
 				<div class="row">
@@ -119,21 +119,21 @@
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="<?php echo base_url();?>" class="active">Home</a></li>
-								
+
 								<li class="dropdown"><a href="#">Category<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                     	<?php
                                     	foreach ($kategori->result_array() as $value) { ?>
-                                    		
+
                                         <li><a href="<?php echo base_url();?>home/kategori/<?php echo $value['id_kategori'];?>"><?php echo $value['nama_kategori'];?></a></li>
                                     	<?php
                                     	}
                                     	?>
-										 
+
                                     </ul>
-                                </li> 
-								
-								
+                                </li>
+
+
 							</ul>
 						</div>
 					</div>
@@ -149,10 +149,10 @@
 		</div><!--/header-bottom-->
 	</header><!--/header-->
 
-	
-	
-	
-	
+
+
+
+
 	<section>
 		<div class="container">
 			<div class="row">
@@ -160,8 +160,8 @@
 					<div class="left-sidebar">
 						<h2>Category</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-							
-							
+
+
 							<?php
 
 							foreach ($kategori->result_array() as $value) {?>
@@ -169,15 +169,15 @@
 								<div class="panel-heading">
 									<h4 class="panel-title"><a href="<?php echo base_url();?>home/kategori/<?php echo $value['id_kategori'];?>"><?php echo $value['nama_kategori'];?></a></h4>
 								</div>
-							</div>		
+							</div>
 							<?php
 							}
-							?>	
-						
-							
+							?>
+
+
 
 						</div><!--/category-products-->
-					
+
 						<div class="brands_products"><!--brands_products-->
 							<h2>Brands</h2>
 							<div class="brands-name">
@@ -185,12 +185,12 @@
 									<?php
 									foreach ($brand->result_array() as $value) { ?>
 									<li><a href="<?php echo base_url();?>home/brand/<?php echo $value['id_brand'];?>"> <span class="pull-right"></span><?php echo $value['nama_brand'];?></a></li>
-									
+
 									<?php
 									}
 									?>
-									
-									
+
+
 								</ul>
 							</div>
 						</div><!--/brands_products-->
@@ -206,35 +206,25 @@
 										<img src="<?php echo base_url();?>images/jasapengiriman/<?php echo $value['gambar'];?>">
 										</a>
 									</li>
-									
+
 									<?php
 									}
 									?>
-									
-									
+
+
 								</ul>
 							</div>
 						</div><!--/Jasa Pengiriman-->
-						
-						
-						
-						
-					
+
+
+
+
+
 					</div>
 				</div>
 				<?php
 
 						foreach ($data_produk->result_array() as $value) {
-							$id_produk 		= $value['id_produk'];
-							$kode_produk 	= $value['kode_produk'];
-							$nama_produk 	= $value['nama_produk'];
-							$harga 			= $value['harga'];
-							$stok 			= $value['stok'];
-							$deskripsi 		= $value['deskripsi'];
-							$gambar 		= $value['gambar'];
-							$nama_kategori 	= $value['nama_kategori'];
-							$nama_brand 	= $value['nama_brand'];
-						}
 
 						?>
 
@@ -244,43 +234,44 @@
 							<div class="product-image-wrapper">
 											<div class="single-products">
 												<div class="productinfo text-center">
-								<img src="<?php echo base_url();?>images/produk/<?php echo $gambar;?>" alt="" />
-								
+								<img src="<?php echo base_url();?>images/produk/<?php echo $value['gambar'];; ?>" alt="gambar_produk" />
+
 							</div>
 							</div>
 							</div>
-							
+
 
 						</div>
-						
+
 						<div class="col-sm-7">
 							<div class="product-information"><!--/product-information-->
-								
-								<h2><?php echo $nama_produk;?></h2>
-								<p>Kode Produk: <?php echo $kode_produk;?></p>
-								
+
+								<h2><?php echo  $value['nama_produk'];;?></h2>
+								<p>Kode Produk: <?php echo $value['kode_produk'];;?></p>
+
 								<span>
-									<span><?php echo $harga;?></span>
-									<label>Quantity: <?php echo $stok;?></label>
-									
-									<a href="<?php echo base_url();?>home/keranjang/<?php echo $id_produk;?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-													
+									<span>Rp <?php echo $value['harga'];;?></span>
+									<label>Quantity: <?php echo $value['stok'];;?></label>
+
+									<a href="<?php echo base_url();?>home/keranjang/<?php echo $value['id_produk']; ?>" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+
 								</span>
-								<p><b>Category:</b> <?php echo $nama_kategori;?></p>
-								<p><b>Brand:</b> <?php echo $nama_brand;?></p>
-								
+									<p><b>Deskripsi:</b> <?php echo $value['deskripsi'];?></p>
+								<?php
+								}
+								?>
 							</div><!--/product-information-->
 						</div>
 					</div><!--/product-details-->
-					
-					
-					
+
+
+
 					<div class="recommended_items"><!--recommended_items-->
-						<h2 class="title text-center">recommended items</h2>
-						
+						<h2 class="title text-center">produk rekomendasi</h2>
+
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
-								<div class="item active">	
+								<div class="item active">
 									<?php
 									foreach ($random_active->result_array() as $value) { ?>
 									<div class="col-sm-4">
@@ -299,10 +290,10 @@
 									<?php
 									}
 									?>
-									
-									
+
+
 								</div>
-								<div class="item">	
+								<div class="item">
 									<?php
 									foreach ($random->result_array() as $value) { ?>
 									<div class="col-sm-4">
@@ -314,7 +305,7 @@
 														<p><?php echo $value['kode_produk'];?></p>
 														<a href="<?php echo base_url();?>home/produk/<?php echo $value['id_produk'];?>"><p> <?php echo $value['nama_produk'];?></p></a>
 														<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-													
+
 												</div>
 											</div>
 										</div>
@@ -329,24 +320,24 @@
 							  </a>
 							  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
 								<i class="fa fa-angle-right"></i>
-							  </a>			
+							  </a>
 						</div>
 					</div><!--/recommended_items-->
-					
+
 				</div>
-				
-				
+
+
 			</div>
 		</div>
 	</section>
-	
+
 	<footer id="footer"><!--Footer-->
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-2">
 						<div class="companyinfo">
-							<h2><span>Adriano MX</span>-Shop</h2>
+							<h2><span>PT. RINS</span>-Shop</h2>
 							<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p> -->
 						</div>
 					</div>
@@ -356,48 +347,48 @@
 
 						<div class="col-sm-3">
 							<div class="video-gallery text-center">
-								
+
 									<div class="">
 										<img src="<?php echo base_url();?>/images/bank/<?php echo $value['gambar'];?>" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
 									</div>
-								
+
 								<p><?php echo $value['nama_pemilik'];?></p>
 								<h2><?php echo $value['no_rekening'];?></h2>
 							</div>
 						</div>
-							
+
 						<?php
 						}
 						?>
-						
+
 					</div>
 					<div class="col-sm-3">
 						<div class="address">
-							
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		
-		
+
+
+
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<p class="pull-left">Copyright © 2014 Adriano MX Online Shop. All rights reserved.</p>
-					
+					<p class="pull-left">Copyright © 2018 Toko Online PT. Rahmat Islam Negeri Sejahtera. All rights reserved.</p>
+
 				</div>
 			</div>
 		</div>
-		
-	</footer><!--/Footer-->
-	
 
-  
+	</footer><!--/Footer-->
+
+
+
     <script src="<?php echo base_url();?>asset/js/jquery.js"></script>
 	<script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
 	<script src="<?php echo base_url();?>asset/js/jquery.scrollUp.min.js"></script>

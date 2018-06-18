@@ -94,7 +94,7 @@
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<li><a href="<?php echo base_url();?>home/tentang_kami"> Tentang Kami</a></li>
-								<li><a href="<?php echo base_url();?>home/cara_belanja"> Cara Belanja</a></li>
+								<li><a href="<?php echo base_url();?>home/cara_belanja"> Petunjuk Belanja</a></li>
 								<li><a href="<?php echo base_url();?>home/hubungi_kami"> Hubungi Kami</a></li>
 								<li><a href="<?php echo base_url();?>home/keranjang"> Keranjang Belanja</a></li>
 							</ul>
@@ -120,7 +120,7 @@
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="<?php echo base_url();?>" class="active">Home</a></li>
 
-								<li class="dropdown"><a href="#">Category<i class="fa fa-angle-down"></i></a>
+								<li class="dropdown"><a href="#">Kategori<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                     	<?php
                                     	foreach ($kategori->result_array() as $value) { ?>
@@ -179,7 +179,7 @@
 										<h1><span>PT. RINS</span>-Shop</h1>
 										<h2><?php echo $value['tittle'];?></h2>
 										<p><?php echo strip_tags(substr($value['description'],0,200));?></p>
-										<a href="<?php echo base_url();?>home/detail_slider/<?php echo $value['id_slider'];?>" class="btn btn-default get"> Read More</a>
+										<a href="<?php echo base_url();?>home/produk/<?php echo $value['id_slider'];?>" class="btn btn-default get"> Read More</a>
 									</div>
 									<div class="col-sm-6">
 										<img src="<?php echo base_url();?>images/slider/<?php echo $value['gambar'];?>" class="girl img-responsive" alt="<?php echo $value['tittle'];?>" />
@@ -195,7 +195,7 @@
 										<h1><span>PT. RINS</span>-Shop</h1>
 										<h2><?php echo $value['tittle'];?></h2>
 										<p><?php echo strip_tags(substr($value['description'],0,200));?></p>
-										<a href="<?php echo base_url();?>home/detail_slider/<?php echo $value['id_slider'];?>" class="btn btn-default get"> Read More</a>
+										<a href="<?php echo base_url();?>home/produk/<?php echo $value['id_slider'];?>" class="btn btn-default get"> Read More</a>
 									</div>
 									<div class="col-sm-6">
 										<img src="<?php echo base_url();?>images/slider/<?php echo $value['gambar'];?>" class="girl img-responsive" alt="<?php echo $value['tittle'];?>" />
@@ -232,7 +232,7 @@
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="left-sidebar">
-						<h2>Category</h2>
+						<h2>Kategori</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
 
 
@@ -417,7 +417,7 @@
 				<div class="row">
 					<div class="col-sm-2">
 						<div class="companyinfo">
-							<h2><span>Adriano MX</span>-Shop</h2>
+							<h2><span>PT. RINS</span>-Shop</h2>
 							<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p> -->
 						</div>
 					</div>
@@ -459,7 +459,7 @@
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<p class="pull-left">Copyright © 2014 Adriano MX Online Shop. All rights reserved.</p>
+					<p class="pull-left">Copyright © 2018 Toko Online PT. Rahmat Islam Negeri Sejahtera. All rights reserved.</p>
 
 				</div>
 			</div>

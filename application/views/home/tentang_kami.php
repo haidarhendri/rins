@@ -13,7 +13,7 @@
     <meta name="keyword" content="<?php echo $keyword;?>">
     <meta name="description" content="<?php echo $description;?>">
     <meta name="author" content="">
-    <title>Home | <?php echo $tittle;?></title>
+    <title>Tentang Kami | <?php echo $tittle;?></title>
     <link href="<?php echo base_url();?>asset/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url();?>asset/css/font-awesome.min.css" rel="stylesheet">
     <link href="<?php echo base_url();?>asset/css/prettyPhoto.css" rel="stylesheet">
@@ -24,7 +24,7 @@
     <!--[if lt IE 9]>
     <script src="<?php echo base_url();?>asset/js/html5shiv.js"></script>
     <script src="<?php echo base_url();?>asset/js/respond.min.js"></script>
-    <![endif]-->       
+    <![endif]-->
     <!-- <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
@@ -38,7 +38,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-6">
-						<?php 
+						<?php
 						foreach ($kontak->result_array() as $value) {
 							$phone = $value['phone'];
 							$email = $value['email'];
@@ -53,7 +53,7 @@
 					</div>
 					<div class="col-sm-6">
 						<div class="social-icons pull-right">
-							<?php 
+							<?php
 							foreach ($sosial_media->result_array() as $value) {
 								$tw = $value['tw'];
 								$fb = $value['fb'];
@@ -70,7 +70,7 @@
 				</div>
 			</div>
 		</div><!--/header_top-->
-		
+
 		<div class="header-middle"><!--header-middle-->
 			<div class="container">
 				<div class="row">
@@ -82,19 +82,19 @@
 							}
 
 							?>
-							<a href="<?php echo base_url();?>"><img src="<?php echo base_url();?>images/logo/<?php echo $logo;?>" alt="Adriano MX Online Shop" /></a>
+							<a href="<?php echo base_url();?>"><img src="<?php echo base_url();?>images/logo/<?php echo $logo;?>" alt="PT. RINS Shop" /></a>
 						</div>
 						<div class="btn-group pull-right">
-							
-							
-							
+
+
+
 						</div>
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">
 								<li><a href="<?php echo base_url();?>home/tentang_kami"> Tentang Kami</a></li>
-								<li><a href="<?php echo base_url();?>home/cara_belanja"> Cara Belanja</a></li>
+								<li><a href="<?php echo base_url();?>home/cara_belanja"> Petunjuk Belanja</a></li>
 								<li><a href="<?php echo base_url();?>home/hubungi_kami"> Hubungi Kami</a></li>
 								<li><a href="<?php echo base_url();?>home/keranjang"> Keranjang Belanja</a></li>
 							</ul>
@@ -103,7 +103,7 @@
 				</div>
 			</div>
 		</div><!--/header-middle-->
-	
+
 		<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
 				<div class="row">
@@ -121,16 +121,16 @@
                                     <ul role="menu" class="sub-menu">
                                     	<?php
                                     	foreach ($kategori->result_array() as $value) { ?>
-                                    		
+
                                         <li><a href="<?php echo base_url();?>home/kategori/<?php echo $value['id_kategori'];?>"><?php echo $value['nama_kategori'];?></a></li>
                                     	<?php
                                     	}
                                     	?>
-										 
+
                                     </ul>
-                                </li> 
-								
-								
+                                </li>
+
+
 							</ul>
 						</div>
 					</div>
@@ -143,9 +143,9 @@
 			</div>
 		</div><!--/header-bottom-->
 	</header><!--/header-->
-	
-	
-	
+
+
+
 	<section>
 		<div class="container">
 			<div class="row">
@@ -153,8 +153,8 @@
 					<div class="left-sidebar">
 						<h2>Category</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-							
-							
+
+
 							<?php
 
 							foreach ($kategori->result_array() as $value) {?>
@@ -162,15 +162,15 @@
 								<div class="panel-heading">
 									<h4 class="panel-title"><a href="<?php echo base_url();?>home/kategori/<?php echo $value['id_kategori'];?>"><?php echo $value['nama_kategori'];?></a></h4>
 								</div>
-							</div>		
+							</div>
 							<?php
 							}
-							?>	
-						
-							
+							?>
+
+
 
 						</div><!--/category-products-->
-					
+
 						<div class="brands_products"><!--brands_products-->
 							<h2>Brands</h2>
 							<div class="brands-name">
@@ -178,50 +178,50 @@
 									<?php
 									foreach ($brand->result_array() as $value) { ?>
 									<li><a href="<?php echo base_url();?>home/brand/<?php echo $value['id_brand'];?>"> <span class="pull-right"></span><?php echo $value['nama_brand'];?></a></li>
-									
+
 									<?php
 									}
 									?>
-									
-									
+
+
 								</ul>
 							</div>
 						</div><!--/brands_products-->
-						
-						
-						
+
+
+
 						<div class="shipping text-center"><!--shipping-->
 							<img src="images/home/shipping.jpg" alt="" />
 						</div><!--/shipping-->
-					
+
 					</div>
 				</div>
-				
+
 			<div class="col-sm-9">
 					<div class="blog-post-area">
 						<h2 class="title text-center">Tentang Kami</h2>
 						<?php
 						foreach ($tentangkami->result_array() as $value) {
-							$judul 		= $value['judul'];	
-							$deskripsi 	= $value['deskripsi'];	
+							$judul 		= $value['judul'];
+							$deskripsi 	= $value['deskripsi'];
 						}
 						?>
 						<div class="single-blog-post">
 							<h3><?php echo $judul;?></h3>
-							
-							
-							
-								<?php echo $deskripsi;?>
-							
 
-							
-							
+
+
+								<?php echo $deskripsi;?>
+
+
+
+
 						</div>
 					</div><!--/blog-post-area-->
 
 					<div class="features_items"><!--features_items-->
 						<h2 class="title text-center">Features Producs</h2>
-						
+
 						<?php
 						foreach ($produk->result_array() as $value) { ?>
 						<div class="col-sm-4">
@@ -248,34 +248,34 @@
 						<?php
 						}
 						?>
-						
-						
-						
-						
-						
-						
-						
+
+
+
+
+
+
+
 					</div><!--features_items-->
 
-					
-					
-					
-					
-				</div>	
+
+
+
+
+				</div>
 
 
 
 			</div>
 		</div>
 	</section>
-	
+
 	<footer id="footer"><!--Footer-->
 		<div class="footer-top">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-2">
 						<div class="companyinfo">
-							<h2><span>Adriano MX</span>-Shop</h2>
+							<h2><span>PT. RINS</span>-Shop</h2>
 							<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p> -->
 						</div>
 					</div>
@@ -285,48 +285,48 @@
 
 						<div class="col-sm-3">
 							<div class="video-gallery text-center">
-								
+
 									<div class="">
 										<img src="<?php echo base_url();?>/images/bank/<?php echo $value['gambar'];?>" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
 									</div>
-								
+
 								<p><?php echo $value['nama_pemilik'];?></p>
 								<h2><?php echo $value['no_rekening'];?></h2>
 							</div>
 						</div>
-							
+
 						<?php
 						}
 						?>
-						
+
 					</div>
 					<div class="col-sm-3">
 						<div class="address">
-							
+
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		
-		
+
+
+
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
-					<p class="pull-left">Copyright © 2014 Adriano MX Online Shop. All rights reserved.</p>
-					
+					<p class="pull-left">Copyright © 2018 Toko Online PT. Rahmat Islam Negeri Sejahtera. All rights reserved.</p>
+
 				</div>
 			</div>
 		</div>
-		
-	</footer><!--/Footer-->
-	
 
-  
+	</footer><!--/Footer-->
+
+
+
     <script src="<?php echo base_url();?>asset/js/jquery.js"></script>
 	<script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
 	<script src="<?php echo base_url();?>asset/js/jquery.scrollUp.min.js"></script>
