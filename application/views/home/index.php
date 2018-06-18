@@ -176,7 +176,7 @@
 								if ($value['id_slider']==$t) { ?>
 								<div class="item active">
 									<div class="col-sm-6">
-										<h1><span>Adriano MX</span>-Shop</h1>
+										<h1><span>PT. RINS</span>-Shop</h1>
 										<h2><?php echo $value['tittle'];?></h2>
 										<p><?php echo strip_tags(substr($value['description'],0,200));?></p>
 										<a href="<?php echo base_url();?>home/detail_slider/<?php echo $value['id_slider'];?>" class="btn btn-default get"> Read More</a>
@@ -192,7 +192,7 @@
 								else { ?>
 								<div class="item">
 									<div class="col-sm-6">
-										<h1><span>Adriano MX</span>-Shop</h1>
+										<h1><span>PT. RINS</span>-Shop</h1>
 										<h2><?php echo $value['tittle'];?></h2>
 										<p><?php echo strip_tags(substr($value['description'],0,200));?></p>
 										<a href="<?php echo base_url();?>home/detail_slider/<?php echo $value['id_slider'];?>" class="btn btn-default get"> Read More</a>
