@@ -8,17 +8,17 @@
 		$description = $value['description'];
 	}
 	?>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keyword" content="<?php echo $keyword;?>">
-    <meta name="description" content="<?php echo $description;?>">
-    <meta name="author" content="">
-    <title>Produk | <?php echo $tittle;?></title>
-    <link href="<?php echo base_url();?>asset/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>asset/css/font-awesome.min.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>asset/css/prettyPhoto.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>asset/css/price-range.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>asset/css/animate.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keyword" content="<?php echo $keyword;?>">
+  <meta name="description" content="<?php echo $description;?>">
+  <meta name="author" content="">
+  <title>Produk | <?php echo $tittle;?></title>
+  <link href="<?php echo base_url();?>asset/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?php echo base_url();?>asset/css/font-awesome.min.css" rel="stylesheet">
+  <link href="<?php echo base_url();?>asset/css/prettyPhoto.css" rel="stylesheet">
+  <link href="<?php echo base_url();?>asset/css/price-range.css" rel="stylesheet">
+  <link href="<?php echo base_url();?>asset/css/animate.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>asset/css/main.css" rel="stylesheet">
 	<link href="<?php echo base_url();?>asset/css/responsive.css" rel="stylesheet">
 </head>
@@ -142,7 +142,7 @@
 				<div class="col-sm-3">
 					<div class="left-sidebar">
 						<h2>Kategori</h2>
-						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+						<div class="panel-group category-products" id="accordian">
 							<?php	foreach ($kategori->result_array() as $value) {?>
 							<div class="panel panel-default">
 								<div class="panel-heading">
@@ -225,7 +225,7 @@
 						</div>
 					</div>
 					<div class="recommended_items">
-						<h2 class="title text-center">produk rekomendasi</h2>
+						<h2 class="title text-center">Produk Rekomendasi</h2>
 
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
