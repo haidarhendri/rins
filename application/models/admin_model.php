@@ -4,8 +4,8 @@ class admin_model extends CI_Model {
 
 	function CekAdminLogin($data) {
 
-		$cek['username'] = mysqli_real_escape_string($data['username']);
-		$cek['password'] = md5(mysqli_real_escape_string($data['password']));
+		// $cek['username'] = mysqli_real_escape_string($data['username']);
+		// $cek['password'] = md5(mysqli_real_escape_string($data['password']));
 
 		$ceklogin = $this->db->get_where('tbl_admin',$cek);
 

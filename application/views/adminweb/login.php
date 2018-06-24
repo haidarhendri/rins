@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
-<!-- BEGIN HEAD -->
+<html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <title>Adriano | Login Options</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
+
     <link href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
     <link href="<?php echo base_url();?>assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -19,9 +18,7 @@
     <link href="<?php echo base_url();?>assets/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/plugins/select2/select2_metro.css" />
     <link href="<?php echo base_url();?>assets/css/pages/login-soft.css" rel="stylesheet" type="text/css"/>
-
     <link rel="shortcut icon" href="<?php echo base_url();?>favicon.ico" />
-   
 </head>
 
 <body class="login">
@@ -30,31 +27,28 @@
         <?php foreach ($logo->result_array() as $value) {
             $logo = $value['gambar'];
         }
-
         ?>
-        <img src="<?php echo base_url();?>images/logo/<?php echo $logo ;?>" alt="" /> 
+        <img src="<?php echo base_url();?>images/logo/<?php echo $logo ;?>" alt="" />
     </div>
     <div class="content">
 
     <?php if(validation_errors()) { ?>
                 <div class="alert alert-error">
-                   <span>Username atau Password Kosong.</span>  
+                   <span>Username atau Password Kosong.</span>
                 </div>
                 <?php } ?>
-
 
     <?php if($this->session->flashdata('error')) { ?>
                 <div class="alert alert-error">
-                   <span>Username atau Password Salah!</span>  
+                   <span>Username atau Password Salah!</span>
                 </div>
                 <?php } ?>
 
-
         <?php echo form_open('adminweb/login','class="form-vertical"'); ?>
-           
+
             <div id="box_message" class="hide"></div>
             <div class="control-group">
-                
+
                 <label class="control-label visible-ie8 visible-ie9">Username</label>
                 <div class="controls">
                     <div class="input-icon left">
@@ -73,21 +67,19 @@
                 </div>
             </div>
             <div class="form-actions">
-               
+
                 <button type="submit" class="btn blue pull-right">
                 Login <i class="m-icon-swapright m-icon-white"></i>
-                </button>            
+                </button>
             </div>
-         
+
         <?php echo form_close(); ?>
-       
+
     </div>
-    <!-- END LOGIN -->
-    <!-- BEGIN COPYRIGHT -->
+
     <div class="copyright">
-        2014 &copy; Adriano MX Shop - Admin Dashboard.
+        2018 &copy; PT. RINS Shop - Admin Dashboard.
     </div>
-   
+
 </body>
-<!-- END BODY -->
 </html>
