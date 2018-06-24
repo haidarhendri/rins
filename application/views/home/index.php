@@ -395,11 +395,11 @@
 
 	</footer>
 
-    <script src="<?php echo base_url();?>asset/js/jquery.js"></script>
+  <script src="<?php echo base_url();?>asset/js/jquery.js"></script>
 	<script src="<?php echo base_url();?>asset/js/bootstrap.min.js"></script>
 	<script src="<?php echo base_url();?>asset/js/jquery.scrollUp.min.js"></script>
 	<script src="<?php echo base_url();?>asset/js/price-range.js"></script>
-    <script src="<?php echo base_url();?>asset/js/jquery.prettyPhoto.js"></script>
-    <script src="<?php echo base_url();?>asset/js/main.js"></script>
+  <script src="<?php echo base_url();?>asset/js/jquery.prettyPhoto.js"></script>
+  <script src="<?php echo base_url();?>asset/js/main.js"></script>
 </body>
 </html>

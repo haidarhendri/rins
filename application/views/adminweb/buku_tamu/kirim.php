@@ -27,8 +27,8 @@
 			<li class="sent"><a class="btn" href="<?php echo base_url();?>adminweb/buku_tamu_kirim"  data-title="Sent">Sent</a><b></b></li>
 			</ul>
 	</div>
-	<div class="span10">
 
+	<div class="span10">
 		<div class="inbox-loading"></div>
 		<div class="inbox-content">
 			<?php
