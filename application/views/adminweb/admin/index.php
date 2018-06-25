@@ -12,9 +12,6 @@
 			<div class="portlet-body">
 				<div class="table-toolbar">
 					<div class="btn-group">
-						<a  class="btn green" href="<?php echo base_url();?>adminweb/admin_tambah" >
-						Add New <i class="icon-plus"></i>
-						</a>
 					</div>
 					<?php
 						if ($this->session->flashdata('message')){
@@ -48,7 +45,6 @@
 							<th>Password</th>
 							<th>Phone</th>
 							<th>Hak Akses</th>
-							<th>Action</th>
 						</tr>
 					</thead>
 
@@ -65,9 +61,6 @@
 							<td>****************</td>
 							<td><?php echo $tampil['phone'];?></td>
 							<td><?php echo $tampil['hak_akses'];?></td>
-							<td><a class="btn green" href="<?php echo base_url();?>adminweb/admin_edit/<?php echo $tampil['id_admin'];?>"><i class="icon-edit"></i> Edit</a>
-							<a class="btn red" href="<?php echo base_url();?>adminweb/admin_delete/<?php echo $tampil['id_admin'];?>" onclick="return confirm('Yakin Ingin Menghapus <?php echo $tampil['nama_admin'];?>?')"><i class="icon-trash"></i> Delete</a>
-						</td>
 						</tr>
 						<?php
 						$no++;

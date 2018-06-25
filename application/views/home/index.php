@@ -254,7 +254,7 @@
 
 				<div class="col-sm-9 padding-right">
 					<div class="features_items">
-						<h2 class="title text-center">Features Producs</h2>
+						<h2 class="title text-center">Features Products</h2>
 						<?php
 						foreach ($produk->result_array() as $value) { ?>
 						<div class="col-sm-4">

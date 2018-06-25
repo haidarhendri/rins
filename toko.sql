@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2018 at 04:48 PM
+-- Generation Time: Jun 24, 2018 at 08:56 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.0.30
 
@@ -67,7 +67,8 @@ INSERT INTO `tbl_bank` (`id_bank`, `nama_bank`, `nama_pemilik`, `no_rekening`, `
 (1, 'BCA', 'Haidar Hendri Setyawan', '12342456', 'aa9d3ec4243250956a314578ff477f1b.png'),
 (2, 'Mandiri', 'Haidar Hendri Setyawan', '543643512', 'ef548aea6b56db9a723f9c7ac91d46da.png'),
 (3, 'BRI', 'Haidar Hendri Setyawan', '1356787', '778473b7e82f9e47ba2c284eb60a6dfb.png'),
-(4, 'Mandiri Syariah', 'Haidar Hendri Setyawan', '35323264642623', 'b8a5a05025b265f80b85ec7f2494e367.png');
+(4, 'Mandiri Syariah', 'Haidar Hendri Setyawan', '35323264642623', 'b8a5a05025b265f80b85ec7f2494e367.png'),
+(5, 'Cash On Delivery', '', '', '143dc4b6dca3bb18c3949cd305b1570c.png');
 
 -- --------------------------------------------------------
 
@@ -268,13 +269,10 @@ CREATE TABLE `tbl_kota` (
 --
 
 INSERT INTO `tbl_kota` (`id_kota`, `nama_kota`) VALUES
-(1, 'Purworejo'),
-(2, 'Rembang'),
-(3, 'Sleman'),
 (4, 'Bantul'),
 (5, 'Magelang'),
 (6, 'Klaten'),
-(7, 'Malang');
+(8, 'Surakarta');
 
 -- --------------------------------------------------------
 
@@ -317,9 +315,9 @@ CREATE TABLE `tbl_produk` (
 --
 
 INSERT INTO `tbl_produk` (`id_produk`, `kode_produk`, `nama_produk`, `harga`, `stok`, `deskripsi`, `gambar`, `kategori_id`, `brand_id`) VALUES
-(8, 'AMX00001', 'Al-Qur\'an Tulis', 250000, 120, 'Kenalkan salah satu produk kami, Al Quran Tulis Metode Follow The Line. Apasih Al Quran Tulis Metode Follow The Line? \r\nJadi Al-Quran ini seperti Al-Quran pada umunya, tapi Al-Quran ini, kita diminta untuk menebalkannya. Ketika membaca, indra yang digunakan adalah mata. Namun, ketika menulis, indra yang digunakan adalah mata dan tangan. \r\nDengan metode ini, kita diminta untuk menebalkan setiap huruf dalam mushaf yang sudah tercetak. Sehingga, dalam penulisan ayat-ayat Al-Quran ini seseorang dilatih untuk menulis dengan benar. \r\nMembaca belum tentu menulis. Tapi menulis sudah pasti membaca. Menulis dengan tangan, menjaga otak tetap tajam hingga tua.&lt;br&gt;<br>', 'cac33b3d015d7c92d8cff7a07dec905f.jpg', 3, 1),
 (9, 'AMX00002', 'Halal Catering', 50000, 200, 'Halal catering adalah sebuah wadah untuk para food preneur mengembangkan dan memperlebar bisnisnya.&amp;nbsp;&lt;br&gt;Dan untuk kamu keluarga besar Al-Islam atau alumni Al-Islam yang memiliki mimpi mengembangkan bisnis semakin luas menjadi nyata, kami membuka kerjasama untuk menjadi bagian dari kami, Halal Catering.<br>', '0aca3b77ed702d7db7f69f5f46d6e007.jpg', 1, 1),
-(10, 'AMX00003', 'Juz Amma Tulis', 30000, 153, '<div>Bukan hanya Al-Quran saja, yang kami punya untuk Metode Follow The line. Kami Juga punya Juz Amma.</div><div>Jangan sampe ketinggalan.</div>', '702ed50aa294da60327a0094d0444280.jpg', 2, 1);
+(10, 'AMX00003', 'Juz Amma Tulis', 30000, 153, '<div>Bukan hanya Al-Quran saja, yang kami punya untuk Metode Follow The line. Kami Juga punya Juz Amma.</div><div>Jangan sampe ketinggalan.</div>', '702ed50aa294da60327a0094d0444280.jpg', 2, 1),
+(12, 'AMX00004', 'Al-Quran Tulis', 250000, 100, 'Kenalkan salah satu produk kami, Al Quran Tulis Metode Follow The Line. Apasih Al Quran Tulis Metode Follow The Line? Jadi Al-Quran ini seperti Al-Quran pada umunya, tapi Al-Quran ini, kita diminta untuk menebalkannya. Ketika membaca, indra yang digunakan adalah mata. Namun, ketika menulis, indra yang digunakan adalah mata dan tangan. Dengan metode ini, kita diminta untuk menebalkan setiap huruf dalam mushaf yang sudah tercetak. Sehingga, dalam penulisan ayat-ayat Al-Quran ini seseorang dilatih untuk menulis dengan benar. Membaca belum tentu menulis. Tapi menulis sudah pasti membaca. Menulis dengan tangan, menjaga otak tetap tajam hingga tua.<br>', 'eef01ce83e128e6ea354aac093c321e1.jpg', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -379,9 +377,9 @@ CREATE TABLE `tbl_slider` (
 --
 
 INSERT INTO `tbl_slider` (`id_slider`, `tittle`, `description`, `gambar`, `status`) VALUES
-(8, 'Al-Qur\'an Tulis', 'Kenalkan salah satu produk kami, Al Quran Tulis Metode Follow The Line. Apasih Al Quran Tulis Metode Follow The Line?<br>Jadi Al-Quran ini seperti Al-Quran pada umunya, tapi Al-Quran ini, kita diminta untuk menebalkannya. Ketika membaca, indra yang digunakan adalah mata. Namun, ketika menulis, indra yang digunakan adalah mata dan tangan. Dengan metode ini, kita diminta untuk menebalkan setiap huruf dalam mushaf yang sudah tercetak. Sehingga, dalam penulisan ayat-ayat Al-Quran ini seseorang dilatih untuk menulis dengan benar. Membaca belum tentu menulis. Tapi menulis sudah pasti membaca. Menulis dengan tangan, menjaga otak tetap tajam hingga tua.<br>', '5f14bec7e21b2ca1a4d1b560bb6d9949.jpg', 1),
 (9, 'Halal Catering', 'Halal catering adalah sebuah wadah untuk para food preneur mengembangkan dan memperlebar bisnisnya.&nbsp;<br>Dan untuk kamu keluarga besar Al-Islam atau alumni Al-Islam yang memiliki mimpi mengembangkan bisnis semakin luas menjadi nyata, kami membuka kerjasama untuk menjadi bagian dari kami, Halal Catering.<br>', '49d1fa952660aa7ea47bbc029a9c81a9.jpg', 1),
-(10, 'Juz Amma Tulis', 'Bukan hanya Al-Quran saja, yang kami punya untuk Metode Follow The line. Kami Juga punya Juz Amma.<br><br>Jangan sampe ketinggalan<br>', '387c5b1dd6f083e72756b3e7ae0e08e3.jpg', 1);
+(10, 'Juz Amma Tulis', 'Bukan hanya Al-Quran saja, yang kami punya untuk Metode Follow The line. Kami Juga punya Juz Amma.<br><br>Jangan sampe ketinggalan<br>', '387c5b1dd6f083e72756b3e7ae0e08e3.jpg', 1),
+(12, 'Al-Quran Tulis', 'Kenalkan salah satu produk kami, Al Quran Tulis Metode Follow The Line. Apasih Al Quran Tulis Metode Follow The Line?<br>Jadi Al-Quran ini seperti Al-Quran pada umunya, tapi Al-Quran ini, kita diminta untuk menebalkannya. Ketika membaca, indra yang digunakan adalah mata. Namun, ketika menulis, indra yang digunakan adalah mata dan tangan. Dengan metode ini, kita diminta untuk menebalkan setiap huruf dalam mushaf yang sudah tercetak. Sehingga, dalam penulisan ayat-ayat Al-Quran ini seseorang dilatih untuk menulis dengan benar. Membaca belum tentu menulis. Tapi menulis sudah pasti membaca. Menulis dengan tangan, menjaga otak tetap tajam hingga tua.<br>', '5f14bec7e21b2ca1a4d1b560bb6d9949.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -452,7 +450,13 @@ INSERT INTO `tbl_transaksi_detail` (`id_transaksi_detail`, `kode_transaksi`, `ko
 (8, 20141007002, 'AMX00006', 'Easy Polo Black Edition', '26000', 1),
 (9, 20141007002, 'AMX00003', 'Easy Polo Black Edition', '56000', 3),
 (10, 20141007002, 'AMX00004', 'Easy Polo Black Edition', '56000', 1),
-(11, 20180618001, 'AMX00007', 'Easy Polo Black Edition', '16000', 1);
+(11, 20180618001, 'AMX00007', 'Easy Polo Black Edition', '16000', 1),
+(12, 20180621001, 'AMX00002', 'Halal Catering', '50000', 1),
+(13, 20180621001, 'AMX00003', 'Juz Amma Tulis', '30000', 1),
+(14, 20180624001, 'AMX00004', 'Al-Quran Tulis', '250000', 1),
+(15, 20180624001, 'AMX00003', 'Juz Amma Tulis', '30000', 1),
+(16, 20180624001, 'AMX00002', 'Halal Catering', '50000', 1),
+(17, 20180624002, 'AMX00003', 'Juz Amma Tulis', '30000', 9);
 
 -- --------------------------------------------------------
 
@@ -480,13 +484,8 @@ CREATE TABLE `tbl_transaksi_header` (
 --
 
 INSERT INTO `tbl_transaksi_header` (`id_transaksi_header`, `kode_transaksi`, `penerima`, `email`, `alamat`, `no_telepon`, `propinsi`, `kota`, `kode_pos`, `bank_id`, `jasapengiriman_id`, `status`) VALUES
-(1, 20140907001, 'Muhammad Roziqin', 'roziqin_iqin@yahoo.com', 'rembang', '085648105447', 'Jawa Tengah', 'Rembang', 59216, 4, 3, 1),
-(2, 20140907002, 'Muhammad Roziqin', 'roziqin_iqin@yahoo.com', 'rembang', '085648105447', 'Jawa Tengah', 'Rembang', 59216, 4, 3, 1),
-(3, 20140907003, 'Muhammad Roziqin', 'roziqin_iqin@yahoo.com', 'rembang', '085648105447', 'Jawa Tengah', 'Rembang', 59216, 4, 3, 1),
-(4, 20140909001, 'Redi', 'rediapri@gmail.com', 'Ponorogo', '085233639940', 'jawa timur', 'Ponorogo', 63451, 1, 3, 1),
-(5, 20141007001, 'nicco', 'niccokathienk@gmail.com', 'Purworejo', '082242299013', 'Jawa Tengah', 'purworejo', 54111, 4, 3, 1),
-(6, 20141007002, 'Bahpong', 'bahpong_@yahoo.com', 'Magelang', '0878675757', 'Jawa tengah', 'Magelang', 89087, 3, 2, 1),
-(7, 20180618001, 'Haidar', 'hendri@gmai.com', 'solo', '081226085836', 'Jawa tengh', 'solo', 57161, 4, 3, 1);
+(9, 20180624001, 'Haidar', 'haidar@gmail.com', 'Griya Sanggrahan Indah 3 C-11 ', '081226085836', 'Jawa Tengah', 'Sukoharjo', 57161, 5, 3, 1),
+(10, 20180624002, 'Hendri', 'hendri@hendri.com', 'Makamhaji, Kartasura', '081081018279', 'Jawa Timur', 'Malang', 57234, 2, 1, 0);
 
 --
 -- Indexes for dumped tables
@@ -626,19 +625,19 @@ ALTER TABLE `tbl_transaksi_header`
 -- AUTO_INCREMENT for table `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_bank`
 --
 ALTER TABLE `tbl_bank`
-  MODIFY `id_bank` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_bank` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tbl_brand`
 --
 ALTER TABLE `tbl_brand`
-  MODIFY `id_brand` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_brand` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_carabelanja`
@@ -668,13 +667,13 @@ ALTER TABLE `tbl_hubungi_kami_kirim`
 -- AUTO_INCREMENT for table `tbl_jasapengiriman`
 --
 ALTER TABLE `tbl_jasapengiriman`
-  MODIFY `id_jasapengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_jasapengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_kategori`
 --
 ALTER TABLE `tbl_kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_kategorigaleri`
@@ -692,7 +691,7 @@ ALTER TABLE `tbl_kontak`
 -- AUTO_INCREMENT for table `tbl_kota`
 --
 ALTER TABLE `tbl_kota`
-  MODIFY `id_kota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_kota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `tbl_logo`
@@ -704,7 +703,7 @@ ALTER TABLE `tbl_logo`
 -- AUTO_INCREMENT for table `tbl_produk`
 --
 ALTER TABLE `tbl_produk`
-  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tbl_sambutan`
@@ -722,7 +721,7 @@ ALTER TABLE `tbl_seo`
 -- AUTO_INCREMENT for table `tbl_slider`
 --
 ALTER TABLE `tbl_slider`
-  MODIFY `id_slider` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_slider` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `tbl_sosial_media`
@@ -740,13 +739,13 @@ ALTER TABLE `tbl_tentangkami`
 -- AUTO_INCREMENT for table `tbl_transaksi_detail`
 --
 ALTER TABLE `tbl_transaksi_detail`
-  MODIFY `id_transaksi_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_transaksi_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tbl_transaksi_header`
 --
 ALTER TABLE `tbl_transaksi_header`
-  MODIFY `id_transaksi_header` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_transaksi_header` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -13,7 +13,7 @@
 						Data Berhasil Diupdate
 					</div>
 					<div id="box_error" class="alert alert-error hide">
-						Data Sudah Ada!
+						Isi Nama Brand atau Nama Brand sudah Terdaftar !
 					</div>
 					<input type="hidden" name="id_brand" id="id_brand" value="<?php echo $id_brand;?>">
 
@@ -21,6 +21,7 @@
 						<label class="control-label">Brand</label>
 						<div class="controls">
 							<input type="text" name="nama_brand" id="nama_brand" class="span6 m-wrap" value="<?php echo $nama_brand;?>"/>
+							<?php echo form_error('nama_brand'); ?>
 						</div>
 					</div>
 

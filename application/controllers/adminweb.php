@@ -5,6 +5,7 @@ class adminweb extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('admin_model');
+		$this->load->library('form_validation'); //import library untuk form validation
 	}
 
 	public function index() {
@@ -47,7 +48,7 @@ class adminweb extends CI_Controller {
 	public function logout() {
 		$this->session->sess_destroy();
 		redirect("adminweb");
-	} 
+	}
 
 	//Awal Seo
 	public function seo() {
@@ -154,12 +155,12 @@ class adminweb extends CI_Controller {
 
 	public function galeri_simpan() {
 
-			
+
 			$this->form_validation->set_rules('kategorigaleri_id', 'Album', 'required');
 			$this->form_validation->set_rules('nama_galeri', 'Nama Gallery', 'required');
-			
-		
-			
+
+
+
 
 			if ($this->form_validation->run() == FALSE)
 			{
@@ -170,7 +171,7 @@ class adminweb extends CI_Controller {
 
 				if(empty($_FILES['userfile']['name']))
 				{
-					
+
 						$in_data['nama_galeri'] = $this->input->post('nama_galeri');
 						$in_data['kategorigaleri_id'] = $this->input->post('kategorigaleri');
 						$this->db->insert("tbl_galeri",$in_data);
@@ -183,54 +184,54 @@ class adminweb extends CI_Controller {
 					$config['upload_path'] = './images/galeri/';
 					$config['allowed_types']= 'gif|jpg|png|jpeg';
 					$config['encrypt_name']	= TRUE;
-					$config['remove_spaces']	= TRUE;	
+					$config['remove_spaces']	= TRUE;
 					$config['max_size']     = '3000';
 					$config['max_width']  	= '3000';
 					$config['max_height']  	= '3000';
-					
-			 
+
+
 					$this->load->library('upload', $config);
-	 
+
 					if ($this->upload->do_upload("userfile")) {
 						$data	 	= $this->upload->data();
-			 
+
 						/* PATH */
 						$source             = "./images/galeri/".$data['file_name'] ;
 						$destination_thumb	= "./images/galeri/thumb/" ;
 						$destination_medium	= "./images/galeri/medium/" ;
 						// Permission Configuration
 						chmod($source, 0777) ;
-			 
+
 						/* Resizing Processing */
 						// Configuration Of Image Manipulation :: Static
 						$this->load->library('image_lib') ;
 						$img['image_library'] = 'GD2';
 						$img['create_thumb']  = TRUE;
 						$img['maintain_ratio']= TRUE;
-			 
+
 						/// Limit Width Resize
 						$limit_medium   = 800 ;
 						$limit_thumb    = 270 ;
-			 
+
 						// Size Image Limit was using (LIMIT TOP)
 						$limit_use  = $data['image_width'] > $data['image_height'] ? $data['image_width'] : $data['image_height'] ;
-			 
+
 						// Percentase Resize
 						if ($limit_use > $limit_thumb) {
 							$percent_medium = $limit_medium/$limit_use ;
 							$percent_thumb  = $limit_thumb/$limit_use ;
 						}
-			 
+
 						//// Making THUMBNAIL ///////
 						$img['width']  = $limit_use > $limit_thumb ?  $data['image_width'] * $percent_thumb : $data['image_width'] ;
 						$img['height'] = $limit_use > $limit_thumb ?  $data['image_height'] * $percent_thumb : $data['image_height'] ;
-			 
+
 						// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_thumb ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
@@ -238,37 +239,37 @@ class adminweb extends CI_Controller {
 
 						$img['width']   = $limit_use > $limit_medium ?  $data['image_width'] * $percent_medium : $data['image_width'] ;
 						$img['height']  = $limit_use > $limit_medium ?  $data['image_height'] * $percent_medium : $data['image_height'] ;
-			 
+
 			 			// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_medium ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
 						$this->image_lib->clear() ;
-						
+
 						$in_data['nama_galeri'] = $this->input->post('nama_galeri');
 						$in_data['gambar'] = $data['file_name'];
 						$in_data['kategorigaleri_id'] = $this->input->post('kategorigaleri_id');
-						
-						
+
+
 						$this->db->insert("tbl_galeri",$in_data);
 
-				
-						
+
+
 						$this->session->set_flashdata('berhasil','Gallery Berhasil Disimpan');
 						redirect("adminweb/galeri");
-						
+
 					}
-					else 
+					else
 					{
 						$this->template->load('template','adminweb/galeri/error');
 					}
 				}
-				
+
 			}
 
 	}
@@ -300,10 +301,10 @@ class adminweb extends CI_Controller {
 
 		if(empty($_FILES['userfile']['name']))
 				{
-					
+
 						$in_data['nama_galeri'] = $this->input->post('nama_galeri');
 						$in_data['kategorigaleri_id'] = $this->input->post('kategorigaleri_id');
-						
+
 						$this->db->update("tbl_galeri",$in_data,$id);
 
 					$this->session->set_flashdata('update','Gallery Berhasil Diupdate');
@@ -314,87 +315,87 @@ class adminweb extends CI_Controller {
 					$config['upload_path'] = './images/galeri/';
 					$config['allowed_types']= 'gif|jpg|png|jpeg';
 					$config['encrypt_name']	= TRUE;
-					$config['remove_spaces']	= TRUE;	
+					$config['remove_spaces']	= TRUE;
 					$config['max_size']     = '3000';
 					$config['max_width']  	= '3000';
 					$config['max_height']  	= '3000';
-					
-			 
+
+
 					$this->load->library('upload', $config);
-	 
+
 					if ($this->upload->do_upload("userfile")) {
 						$data	 	= $this->upload->data();
-			 
+
 						/* PATH */
 						$source             = "./images/galeri/".$data['file_name'] ;
 						$destination_thumb	= "./images/galeri/thumb/" ;
 						$destination_medium	= "./images/galeri/medium/" ;
-			 
+
 						// Permission Configuration
 						chmod($source, 0777) ;
-			 
+
 						/* Resizing Processing */
 						// Configuration Of Image Manipulation :: Static
 						$this->load->library('image_lib') ;
 						$img['image_library'] = 'GD2';
 						$img['create_thumb']  = TRUE;
 						$img['maintain_ratio']= TRUE;
-			 
+
 						/// Limit Width Resize
 						$limit_medium   = 800 ;
 						$limit_thumb    = 270 ;
-			 
+
 						// Size Image Limit was using (LIMIT TOP)
 						$limit_use  = $data['image_width'] > $data['image_height'] ? $data['image_width'] : $data['image_height'] ;
-			 
+
 						// Percentase Resize
 						if ($limit_use > $limit_thumb) {
 							$percent_medium = $limit_medium/$limit_use ;
 							$percent_thumb  = $limit_thumb/$limit_use ;
 						}
-			 
+
 						//// Making THUMBNAIL ///////
 						$img['width']  = $limit_use > $limit_thumb ?  $data['image_width'] * $percent_thumb : $data['image_width'] ;
 						$img['height'] = $limit_use > $limit_thumb ?  $data['image_height'] * $percent_thumb : $data['image_height'] ;
-			 
+
 						// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_thumb ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
 						$this->image_lib->clear() ;
-	 
+
 						////// Making MEDIUM /////////////
 						$img['width']   = $limit_use > $limit_medium ?  $data['image_width'] * $percent_medium : $data['image_width'] ;
 						$img['height']  = $limit_use > $limit_medium ?  $data['image_height'] * $percent_medium : $data['image_height'] ;
-			 
+
 						// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_medium ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
 						$this->image_lib->clear() ;
-						
+
 						$in_data['nama_galeri'] = $this->input->post('nama_galeri');
 						$in_data['gambar'] = $data['file_name'];
 						$in_data['kategorigaleri_id'] = $this->input->post('kategorigaleri');
-						
+
 						$this->db->update("tbl_galeri",$in_data,$id);
-				
-						
+
+
 						$this->session->set_flashdata('update','Gallery Berhasil Diupdate');
 						redirect("adminweb/galeri");
-						
+
 					}
-					else 
+					else
 					{
 						$this->template->load('template','adminweb/galeri/error');
 					}
@@ -418,12 +419,12 @@ class adminweb extends CI_Controller {
 		if($this->session->userdata("logged_in")!=="") {
 			$id['id_logo'] = $this->input->post("id_logo");
 			$id_logo = $this->input->post("id_logo");
-			
+
 
 				if(empty($_FILES['userfile']['name']))
 				{
-					
-					
+
+
 					$this->session->set_flashdata('message','Logo Berhasil Diupdate');
 					redirect("adminweb/logo");
 				}
@@ -432,70 +433,70 @@ class adminweb extends CI_Controller {
 					$config['upload_path'] = './images/logo/';
 					$config['allowed_types']= 'gif|jpg|png|jpeg';
 					$config['encrypt_name']	= TRUE;
-					$config['remove_spaces']	= TRUE;	
+					$config['remove_spaces']	= TRUE;
 					$config['max_size']     = '3000';
 					$config['max_width']  	= '500';
 					$config['max_height']  	= '250';
-			 
+
 					$this->load->library('upload', $config);
-	 
+
 					if ($this->upload->do_upload("userfile")) {
 						$data	 	= $this->upload->data();
-			 
+
 						/* PATH */
 						$source             = "./images/logo/".$data['file_name'] ;
 						$destination_thumb	= "./images/logo/thumb/" ;
-			 
+
 						// Permission Configuration
 						chmod($source, 0777) ;
-			 
+
 						/* Resizing Processing */
 						// Configuration Of Image Manipulation :: Static
 						$this->load->library('image_lib') ;
 						$img['image_library'] = 'GD2';
 						$img['create_thumb']  = TRUE;
 						$img['maintain_ratio']= TRUE;
-			 
+
 						/// Limit Width Resize
 						$limit_thumb    = 640 ;
-			 
+
 						// Size Image Limit was using (LIMIT TOP)
 						$limit_use  = $data['image_width'] > $data['image_height'] ? $data['image_width'] : $data['image_height'] ;
-			 
+
 						// Percentase Resize
 						if ($limit_use > $limit_thumb) {
 							$percent_thumb  = $limit_thumb/$limit_use ;
 						}
-			 
+
 						//// Making THUMBNAIL ///////
 						$img['width']  = $limit_use > $limit_thumb ?  $data['image_width'] * $percent_thumb : $data['image_width'] ;
 						$img['height'] = $limit_use > $limit_thumb ?  $data['image_height'] * $percent_thumb : $data['image_height'] ;
-			 
+
 						// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_thumb ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
 						$this->image_lib->clear() ;
-						
+
 						$in_data['gambar'] = $data['file_name'];
 						$this->db->update("tbl_logo",$in_data,$id);
-				
-						
+
+
 						$this->session->set_flashdata('message','Logo Berhasil Diupdate');
 						redirect("adminweb/logo");
-						
+
 					}
-					else 
+					else
 					{
 						echo $this->upload->display_errors('<p>','</p>');
 					}
 				}
-			
+
 		}
 		else
 		{
@@ -533,7 +534,7 @@ class adminweb extends CI_Controller {
 	}
 	//Akhir kontak
 
-	//Awal Sosial Media 
+	//Awal Sosial Media
    public function sosial_media() {
    	if($this->session->userdata("logged_in")!=="") {
 		   	$query = $this->admin_model->GetSosialMedia();
@@ -555,7 +556,7 @@ class adminweb extends CI_Controller {
 		$tw =$this->input->post("tw");
 		$fb =$this->input->post("fb");
 		$gp =$this->input->post("gp");
-		
+
 
 		$this->admin_model->SimpanSosialMedia($id_sosial_media,$tw,$fb,$gp);
 	}
@@ -571,8 +572,12 @@ class adminweb extends CI_Controller {
 	public function kategori_simpan() {
 		$nama_kategori = $this->input->post("nama_kategori");
 		$cek = $this->admin_model->KategoriSama($nama_kategori);
+		$this->form_validation->set_rules('nama_kategori', 'Nama Kategori', 'required');
 
-		if ($cek->num_rows()>0) {
+		if($this->form_validation->run() == FALSE){
+			$success = "1";
+		}
+		else if ($cek->num_rows()>0) {
 			$success = "1";
 		}
 		else {
@@ -606,15 +611,19 @@ class adminweb extends CI_Controller {
 	public function kategori_update() {
 		$id_kategori = $this->input->post('id_kategori');
 		$nama_kategori = $this->input->post('nama_kategori');
+		$this->form_validation->set_rules('nama_kategori', 'Nama Kategori', 'required');
 
 		$cek = $this->admin_model->KategoriSama($nama_kategori);
 
-		if ($cek->num_rows()>0) {
+		if($this->form_validation->run() == FALSE){
+			$success = "1";
+		}
+		else if ($cek->num_rows()>0) {
 			$success = "1";
 		}
 		else {
 			$this->session->set_flashdata('berhasil','Kategori Berhasil Disimpan');
-			$this->admin_model->KategoriUpdate($id_kategori,$nama_kategori);
+			$this->admin_model->KategoriSimpan($nama_kategori);
 			$success="0";
 		}
 
@@ -630,10 +639,16 @@ class adminweb extends CI_Controller {
 	}
 
 	public function brand_simpan() {
+
+		$this->form_validation->set_rules('nama_brand', 'Nama Brand', 'required');
+
 		$nama_brand = $this->input->post("nama_brand");
 		$cek = $this->admin_model->BrandSama($nama_brand);
 
-		if ($cek->num_rows()>0) {
+		if($this->form_validation->run() == FALSE){
+			$success = "1";
+		}
+		else if ($cek->num_rows()>0) {
 			$success = "1";
 		}
 		else {
@@ -646,6 +661,9 @@ class adminweb extends CI_Controller {
 	}
 
 	public function brand_edit() {
+
+		$this->form_validation->set_rules('nama_brand', 'Nama Brand', 'required');
+
 		$id_brand = $this->uri->segment(3);
 		$query = $this->admin_model->GetEditBrand($id_brand);
 		foreach ($query->result_array() as $tampil) {
@@ -667,15 +685,19 @@ class adminweb extends CI_Controller {
 	public function brand_update() {
 		$id_brand = $this->input->post('id_brand');
 		$nama_brand = $this->input->post('nama_brand');
+		$this->form_validation->set_rules('nama_brand', 'Nama Brand', 'required');
 
 		$cek = $this->admin_model->BrandSama($nama_brand);
 
-		if ($cek->num_rows()>0) {
+		if($this->form_validation->run() == FALSE){
+			$success = "1";
+		}
+		else if ($cek->num_rows()>0) {
 			$success = "1";
 		}
 		else {
 			$this->session->set_flashdata('berhasil','Brand Berhasil Disimpan');
-			$this->admin_model->BrandUpdate($id_brand,$nama_brand);
+			$this->admin_model->BrandSimpan($nama_brand);
 			$success="0";
 		}
 
@@ -693,8 +715,12 @@ class adminweb extends CI_Controller {
 	public function kota_simpan() {
 		$nama_kota = $this->input->post("nama_kota");
 		$cek = $this->admin_model->KotaSama($nama_kota);
+		$this->form_validation->set_rules('nama_kota', 'Nama Kota', 'required');
 
-		if ($cek->num_rows()>0) {
+		if($this->form_validation->run() == FALSE){
+			$success = "1";
+		}
+		else if ($cek->num_rows()>0) {
 			$success = "1";
 		}
 		else {
@@ -728,15 +754,19 @@ class adminweb extends CI_Controller {
 	public function kota_update() {
 		$id_kota = $this->input->post('id_kota');
 		$nama_kota = $this->input->post('nama_kota');
+		$this->form_validation->set_rules('nama_kota', 'Nama Kota', 'required');
 
 		$cek = $this->admin_model->KotaSama($nama_kota);
 
-		if ($cek->num_rows()>0) {
+		if($this->form_validation->run() == FALSE){
+			$success = "1";
+		}
+		else if ($cek->num_rows()>0) {
 			$success = "1";
 		}
 		else {
 			$this->session->set_flashdata('berhasil','Kota Berhasil Disimpan');
-			$this->admin_model->KotaUpdate($id_kota,$nama_kota);
+			$this->admin_model->KotaSimpan($nama_kota);
 			$success="0";
 		}
 
@@ -753,27 +783,27 @@ class adminweb extends CI_Controller {
 	}
 
 	public function bank_tambah() {
-		
+
 		$this->template->load('template','adminweb/bank/add');
 	}
 
 	public function bank_simpan() {
 
-			
+
 			$this->form_validation->set_rules('nama_bank', 'Nama Bank', 'required');
 			$this->form_validation->set_rules('nama_pemilik', 'Nama Pemilik', 'required');
 			$this->form_validation->set_rules('no_rekening', 'No Rekening', 'required');
 
 			if ($this->form_validation->run() == FALSE)
 			{
-				
+
 				$this->template->load('template','adminweb/bank/add');
 			}
 			else {
 
 				if(empty($_FILES['userfile']['name']))
 				{
-					
+
 						$in_data['nama_bank'] = $this->input->post('nama_bank');
 						$in_data['nama_pemilik'] = $this->input->post('nama_pemilik');
 						$in_data['no_rekening'] = $this->input->post('no_rekening');
@@ -787,54 +817,54 @@ class adminweb extends CI_Controller {
 					$config['upload_path'] = './images/bank/';
 					$config['allowed_types']= 'gif|jpg|png|jpeg';
 					$config['encrypt_name']	= TRUE;
-					$config['remove_spaces']	= TRUE;	
+					$config['remove_spaces']	= TRUE;
 					$config['max_size']     = '3000';
 					$config['max_width']  	= '3000';
 					$config['max_height']  	= '3000';
-					
-			 
+
+
 					$this->load->library('upload', $config);
-	 
+
 					if ($this->upload->do_upload("userfile")) {
 						$data	 	= $this->upload->data();
-			 
+
 						/* PATH */
 						$source             = "./images/bank/".$data['file_name'] ;
 						$destination_thumb	= "./images/bank/thumb/" ;
 						$destination_medium	= "./images/bank/medium/" ;
 						// Permission Configuration
 						chmod($source, 0777) ;
-			 
+
 						/* Resizing Processing */
 						// Configuration Of Image Manipulation :: Static
 						$this->load->library('image_lib') ;
 						$img['image_library'] = 'GD2';
 						$img['create_thumb']  = TRUE;
 						$img['maintain_ratio']= TRUE;
-			 
+
 						/// Limit Width Resize
 						$limit_medium   = 800 ;
 						$limit_thumb    = 270 ;
-			 
+
 						// Size Image Limit was using (LIMIT TOP)
 						$limit_use  = $data['image_width'] > $data['image_height'] ? $data['image_width'] : $data['image_height'] ;
-			 
+
 						// Percentase Resize
 						if ($limit_use > $limit_thumb) {
 							$percent_medium = $limit_medium/$limit_use ;
 							$percent_thumb  = $limit_thumb/$limit_use ;
 						}
-			 
+
 						//// Making THUMBNAIL ///////
 						$img['width']  = $limit_use > $limit_thumb ?  $data['image_width'] * $percent_thumb : $data['image_width'] ;
 						$img['height'] = $limit_use > $limit_thumb ?  $data['image_height'] * $percent_thumb : $data['image_height'] ;
-			 
+
 						// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_thumb ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
@@ -842,38 +872,38 @@ class adminweb extends CI_Controller {
 
 						$img['width']   = $limit_use > $limit_medium ?  $data['image_width'] * $percent_medium : $data['image_width'] ;
 						$img['height']  = $limit_use > $limit_medium ?  $data['image_height'] * $percent_medium : $data['image_height'] ;
-			 
+
 			 			// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_medium ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
 						$this->image_lib->clear() ;
-						
+
 						$in_data['nama_bank'] = $this->input->post('nama_bank');
 						$in_data['nama_pemilik'] = $this->input->post('nama_pemilik');
 						$in_data['no_rekening'] = $this->input->post('no_rekening');
 						$in_data['gambar'] = $data['file_name'];
-						
-						
+
+
 						$this->db->insert("tbl_bank",$in_data);
 
-				
-						
+
+
 						$this->session->set_flashdata('berhasil','Bank Berhasil Disimpan');
 						redirect("adminweb/bank");
-						
+
 					}
-					else 
+					else
 					{
 						$this->template->load('template','adminweb/bank/error');
 					}
 				}
-				
+
 			}
 
 	}
@@ -905,11 +935,11 @@ class adminweb extends CI_Controller {
 
 		if(empty($_FILES['userfile']['name']))
 				{
-					
+
 						$in_data['nama_bank'] = $this->input->post('nama_bank');
 						$in_data['nama_pemilik'] = $this->input->post('nama_pemilik');
 						$in_data['no_rekening'] = $this->input->post('no_rekening');
-						
+
 						$this->db->update("tbl_bank",$in_data,$id);
 
 					$this->session->set_flashdata('update','Bank Berhasil Diupdate');
@@ -920,88 +950,88 @@ class adminweb extends CI_Controller {
 					$config['upload_path'] = './images/bank/';
 					$config['allowed_types']= 'gif|jpg|png|jpeg';
 					$config['encrypt_name']	= TRUE;
-					$config['remove_spaces']	= TRUE;	
+					$config['remove_spaces']	= TRUE;
 					$config['max_size']     = '3000';
 					$config['max_width']  	= '260';
 					$config['max_height']  	= '100';
-					
-			 
+
+
 					$this->load->library('upload', $config);
-	 
+
 					if ($this->upload->do_upload("userfile")) {
 						$data	 	= $this->upload->data();
-			 
+
 						/* PATH */
 						$source             = "./images/bank/".$data['file_name'] ;
 						$destination_thumb	= "./images/bank/thumb/" ;
 						$destination_medium	= "./images/bank/medium/" ;
-			 
+
 						// Permission Configuration
 						chmod($source, 0777) ;
-			 
+
 						/* Resizing Processing */
 						// Configuration Of Image Manipulation :: Static
 						$this->load->library('image_lib') ;
 						$img['image_library'] = 'GD2';
 						$img['create_thumb']  = TRUE;
 						$img['maintain_ratio']= TRUE;
-			 
+
 						/// Limit Width Resize
 						$limit_medium   = 90 ;
 						$limit_thumb    = 60 ;
-			 
+
 						// Size Image Limit was using (LIMIT TOP)
 						$limit_use  = $data['image_width'] > $data['image_height'] ? $data['image_width'] : $data['image_height'] ;
-			 
+
 						// Percentase Resize
 						if ($limit_use > $limit_thumb) {
 							$percent_medium = $limit_medium/$limit_use ;
 							$percent_thumb  = $limit_thumb/$limit_use ;
 						}
-			 
+
 						//// Making THUMBNAIL ///////
 						$img['width']  = $limit_use > $limit_thumb ?  $data['image_width'] * $percent_thumb : $data['image_width'] ;
 						$img['height'] = $limit_use > $limit_thumb ?  $data['image_height'] * $percent_thumb : $data['image_height'] ;
-			 
+
 						// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_thumb ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
 						$this->image_lib->clear() ;
-	 
+
 						////// Making MEDIUM /////////////
 						$img['width']   = $limit_use > $limit_medium ?  $data['image_width'] * $percent_medium : $data['image_width'] ;
 						$img['height']  = $limit_use > $limit_medium ?  $data['image_height'] * $percent_medium : $data['image_height'] ;
-			 
+
 						// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_medium ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
 						$this->image_lib->clear() ;
-						
+
 						$in_data['nama_bank'] = $this->input->post('nama_bank');
 						$in_data['nama_pemilik'] = $this->input->post('nama_pemilik');
 						$in_data['no_rekening'] = $this->input->post('no_rekening');
 						$in_data['gambar'] = $data['file_name'];
-						
+
 						$this->db->update("tbl_bank",$in_data,$id);
-				
-						
+
+
 						$this->session->set_flashdata('update','Bank Berhasil Diupdate');
 						redirect("adminweb/bank");
-						
+
 					}
-					else 
+					else
 					{
 						$this->template->load('template','adminweb/bank/error');
 					}
@@ -1101,7 +1131,7 @@ class adminweb extends CI_Controller {
 		else {
 			redirect("adminweb");
 		}
-	} 
+	}
 
 	public function admin_delete() {
 		$id = $this->uri->segment(3);
@@ -1123,8 +1153,8 @@ class adminweb extends CI_Controller {
 			$this->form_validation->set_rules('password', 'Password', 'required');
 			$this->form_validation->set_rules('phone', 'Phone', 'required');
 			$this->form_validation->set_rules('hak_akses', 'Hak Akses', 'required');
-			
-			
+
+
 
 			if ($this->form_validation->run() == FALSE)
 			{
@@ -1142,7 +1172,7 @@ class adminweb extends CI_Controller {
 
 					$this->session->set_flashdata('berhasil','Admin Berhasil Disimpan');
 					redirect("adminweb/admin");
-				
+
 			}
 
 	}
@@ -1158,7 +1188,7 @@ class adminweb extends CI_Controller {
 			$data['password'] = $tampil['password'];
 			$data['phone'] = $tampil['phone'];
 			$data['hak_akses'] = $tampil['hak_akses'];
-			
+
 		}
 		$this->template->load('template','adminweb/admin/edit',$data);
 	}
@@ -1183,12 +1213,12 @@ class adminweb extends CI_Controller {
 			$in_data['phone'] = $this->input->post('phone');
 			$in_data['hak_akses'] = $this->input->post('hak_akses');
 		}
-								
+
 		$this->db->update("tbl_admin",$in_data,$id);
 
 		$this->session->set_flashdata('update','Admin Berhasil Diupdate');
 		redirect("adminweb/admin");
-		
+
 	}
 	//Akhir Admin
 
@@ -1207,20 +1237,20 @@ class adminweb extends CI_Controller {
 	public function jasapengiriman_simpan() {
 
 			$this->form_validation->set_rules('nama', 'Nama Jasa Pengiriman', 'required');
-			
-		
-			
+
+
+
 
 			if ($this->form_validation->run() == FALSE)
 			{
-			
+
 				$this->template->load('template','adminweb/jasapengiriman/add');
 			}
 			else {
 
 				if(empty($_FILES['userfile']['name']))
 				{
-					
+
 						$in_data['nama'] = $this->input->post('nama');
 						$this->db->insert("tbl_jasapengiriman",$in_data);
 
@@ -1232,54 +1262,54 @@ class adminweb extends CI_Controller {
 					$config['upload_path'] = './images/jasapengiriman/';
 					$config['allowed_types']= 'gif|jpg|png|jpeg';
 					$config['encrypt_name']	= TRUE;
-					$config['remove_spaces']	= TRUE;	
+					$config['remove_spaces']	= TRUE;
 					$config['max_size']     = '3000';
 					$config['max_width']  	= '150';
 					$config['max_height']  	= '60';
-					
-			 
+
+
 					$this->load->library('upload', $config);
-	 
+
 					if ($this->upload->do_upload("userfile")) {
 						$data	 	= $this->upload->data();
-			 
+
 						/* PATH */
 						$source             = "./images/jasapengiriman/".$data['file_name'] ;
 						$destination_thumb	= "./images/jasapengiriman/thumb/" ;
 						$destination_medium	= "./images/jasapengiriman/medium/" ;
 						// Permission Configuration
 						chmod($source, 0777) ;
-			 
+
 						/* Resizing Processing */
 						// Configuration Of Image Manipulation :: Static
 						$this->load->library('image_lib') ;
 						$img['image_library'] = 'GD2';
 						$img['create_thumb']  = TRUE;
 						$img['maintain_ratio']= TRUE;
-			 
+
 						/// Limit Width Resize
 						$limit_medium   = 150 ;
 						$limit_thumb    = 60 ;
-			 
+
 						// Size Image Limit was using (LIMIT TOP)
 						$limit_use  = $data['image_width'] > $data['image_height'] ? $data['image_width'] : $data['image_height'] ;
-			 
+
 						// Percentase Resize
 						if ($limit_use > $limit_thumb) {
 							$percent_medium = $limit_medium/$limit_use ;
 							$percent_thumb  = $limit_thumb/$limit_use ;
 						}
-			 
+
 						//// Making THUMBNAIL ///////
 						$img['width']  = $limit_use > $limit_thumb ?  $data['image_width'] * $percent_thumb : $data['image_width'] ;
 						$img['height'] = $limit_use > $limit_thumb ?  $data['image_height'] * $percent_thumb : $data['image_height'] ;
-			 
+
 						// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_thumb ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
@@ -1287,37 +1317,37 @@ class adminweb extends CI_Controller {
 
 						$img['width']   = $limit_use > $limit_medium ?  $data['image_width'] * $percent_medium : $data['image_width'] ;
 						$img['height']  = $limit_use > $limit_medium ?  $data['image_height'] * $percent_medium : $data['image_height'] ;
-			 
+
 			 			// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_medium ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
 						$this->image_lib->clear() ;
-						
+
 						$in_data['nama'] = $this->input->post('nama');
 						$in_data['gambar'] = $data['file_name'];
-						
-						
-						
+
+
+
 						$this->db->insert("tbl_jasapengiriman",$in_data);
 
-				
-						
+
+
 						$this->session->set_flashdata('berhasil','Jasa Pengiriman Berhasil Disimpan');
 						redirect("adminweb/jasapengiriman");
-						
+
 					}
-					else 
+					else
 					{
 						$this->template->load('template','adminweb/jasapengiriman/error');
 					}
 				}
-				
+
 			}
 
 	}
@@ -1347,9 +1377,9 @@ class adminweb extends CI_Controller {
 
 		if(empty($_FILES['userfile']['name']))
 				{
-					
+
 						$in_data['nama'] = $this->input->post('nama');
-					
+
 						$this->db->update("tbl_jasapengiriman",$in_data,$id);
 
 					$this->session->set_flashdata('update','Jasa Pengiriman Berhasil Diupdate');
@@ -1360,86 +1390,86 @@ class adminweb extends CI_Controller {
 					$config['upload_path'] = './images/jasapengiriman/';
 					$config['allowed_types']= 'gif|jpg|png|jpeg';
 					$config['encrypt_name']	= TRUE;
-					$config['remove_spaces']	= TRUE;	
+					$config['remove_spaces']	= TRUE;
 					$config['max_size']     = '3000';
 					$config['max_width']  	= '150';
 					$config['max_height']  	= '60';
-					
-			 
+
+
 					$this->load->library('upload', $config);
-	 
+
 					if ($this->upload->do_upload("userfile")) {
 						$data	 	= $this->upload->data();
-			 
+
 						/* PATH */
 						$source             = "./images/jasapengiriman/".$data['file_name'] ;
 						$destination_thumb	= "./images/jasapengiriman/thumb/" ;
 						$destination_medium	= "./images/jasapengiriman/medium/" ;
-			 
+
 						// Permission Configuration
 						chmod($source, 0777) ;
-			 
+
 						/* Resizing Processing */
 						// Configuration Of Image Manipulation :: Static
 						$this->load->library('image_lib') ;
 						$img['image_library'] = 'GD2';
 						$img['create_thumb']  = TRUE;
 						$img['maintain_ratio']= TRUE;
-			 
+
 						/// Limit Width Resize
 						$limit_medium   = 800 ;
 						$limit_thumb    = 270 ;
-			 
+
 						// Size Image Limit was using (LIMIT TOP)
 						$limit_use  = $data['image_width'] > $data['image_height'] ? $data['image_width'] : $data['image_height'] ;
-			 
+
 						// Percentase Resize
 						if ($limit_use > $limit_thumb) {
 							$percent_medium = $limit_medium/$limit_use ;
 							$percent_thumb  = $limit_thumb/$limit_use ;
 						}
-			 
+
 						//// Making THUMBNAIL ///////
 						$img['width']  = $limit_use > $limit_thumb ?  $data['image_width'] * $percent_thumb : $data['image_width'] ;
 						$img['height'] = $limit_use > $limit_thumb ?  $data['image_height'] * $percent_thumb : $data['image_height'] ;
-			 
+
 						// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_thumb ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
 						$this->image_lib->clear() ;
-	 
+
 						////// Making MEDIUM /////////////
 						$img['width']   = $limit_use > $limit_medium ?  $data['image_width'] * $percent_medium : $data['image_width'] ;
 						$img['height']  = $limit_use > $limit_medium ?  $data['image_height'] * $percent_medium : $data['image_height'] ;
-			 
+
 						// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_medium ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
 						$this->image_lib->clear() ;
-						
+
 						$in_data['nama'] = $this->input->post('nama');
 						$in_data['gambar'] = $data['file_name'];
-						
+
 						$this->db->update("tbl_jasapengiriman",$in_data,$id);
-				
-						
+
+
 						$this->session->set_flashdata('update','Jasa Pengiriman Berhasil Diupdate');
 						redirect("adminweb/jasapengiriman");
-						
+
 					}
-					else 
+					else
 					{
 						$this->template->load('template','adminweb/jasapengiriman/error');
 					}
@@ -1448,7 +1478,7 @@ class adminweb extends CI_Controller {
 	}
 	//Akhir Jasa Pengiriman
 
-	//Awal Produk 
+	//Awal Produk
 	public function produk () {
 
 		$data['data_produk'] = $this->admin_model->GetProduk();
@@ -1483,7 +1513,7 @@ class adminweb extends CI_Controller {
 
 			if(empty($_FILES['userfile']['name']))
 				{
-					
+
 						$in_data['kode_produk'] = $this->input->post('kode_produk');
 						$in_data['nama_produk'] = $this->input->post('nama_produk');
 						$in_data['harga'] = $this->input->post('harga');
@@ -1501,54 +1531,54 @@ class adminweb extends CI_Controller {
 					$config['upload_path'] = './images/produk/';
 					$config['allowed_types']= 'gif|jpg|png|jpeg';
 					$config['encrypt_name']	= TRUE;
-					$config['remove_spaces']	= TRUE;	
+					$config['remove_spaces']	= TRUE;
 					$config['max_size']     = '3000';
 					$config['max_width']  	= '268';
 					$config['max_height']  	= '249';
-					
-			 
+
+
 					$this->load->library('upload', $config);
-	 
+
 					if ($this->upload->do_upload("userfile")) {
 						$data	 	= $this->upload->data();
-			 
+
 						/* PATH */
 						$source             = "./images/produk/".$data['file_name'] ;
 						$destination_thumb	= "./images/produk/thumb/" ;
 						$destination_medium	= "./images/produk/medium/" ;
 						// Permission Configuration
 						chmod($source, 0777) ;
-			 
+
 						/* Resizing Processing */
 						// Configuration Of Image Manipulation :: Static
 						$this->load->library('image_lib') ;
 						$img['image_library'] = 'GD2';
 						$img['create_thumb']  = TRUE;
 						$img['maintain_ratio']= TRUE;
-			 
+
 						/// Limit Width Resize
 						$limit_medium   = 268 ;
 						$limit_thumb    = 249 ;
-			 
+
 						// Size Image Limit was using (LIMIT TOP)
 						$limit_use  = $data['image_width'] > $data['image_height'] ? $data['image_width'] : $data['image_height'] ;
-			 
+
 						// Percentase Resize
 						if ($limit_use > $limit_thumb) {
 							$percent_medium = $limit_medium/$limit_use ;
 							$percent_thumb  = $limit_thumb/$limit_use ;
 						}
-			 
+
 						//// Making THUMBNAIL ///////
 						$img['width']  = $limit_use > $limit_thumb ?  $data['image_width'] * $percent_thumb : $data['image_width'] ;
 						$img['height'] = $limit_use > $limit_thumb ?  $data['image_height'] * $percent_thumb : $data['image_height'] ;
-			 
+
 						// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_thumb ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
@@ -1556,18 +1586,18 @@ class adminweb extends CI_Controller {
 
 						$img['width']   = $limit_use > $limit_medium ?  $data['image_width'] * $percent_medium : $data['image_width'] ;
 						$img['height']  = $limit_use > $limit_medium ?  $data['image_height'] * $percent_medium : $data['image_height'] ;
-			 
+
 			 			// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_medium ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
 						$this->image_lib->clear() ;
-						
+
 						$in_data['kode_produk'] = $this->input->post('kode_produk');
 						$in_data['nama_produk'] = $this->input->post('nama_produk');
 						$in_data['harga'] = $this->input->post('harga');
@@ -1576,20 +1606,20 @@ class adminweb extends CI_Controller {
 						$in_data['kategori_id'] = $this->input->post('kategori_id');
 						$in_data['brand_id'] = $this->input->post('brand_id');
 						$in_data['gambar'] = $data['file_name'];
-						
-						
-						
+
+
+
 						$this->db->insert("tbl_produk",$in_data);
 
-						
 
-				
-						
+
+
+
 						$this->session->set_flashdata('berhasil','Produk Berhasil Disimpan');
 						redirect("adminweb/produk");
-						
+
 					}
-					else 
+					else
 					{
 						$this->template->load('template','adminweb/produk/error');
 					}
@@ -1620,7 +1650,7 @@ class adminweb extends CI_Controller {
 			$data['deskripsi']= $tampil['deskripsi'];
 			$data['kategori_id']= $tampil['kategori_id'];
 			$data['brand_id']= $tampil['brand_id'];
-			
+
 		}
 		$data['data_kategori'] = $this->admin_model->GetKategori();
 		$data['data_brand']  = $this->admin_model->GetBrand();
@@ -1632,7 +1662,7 @@ class adminweb extends CI_Controller {
 
 		if(empty($_FILES['userfile']['name']))
 				{
-					
+
 						$in_data['kode_produk'] = $this->input->post('kode_produk');
 						$in_data['nama_produk'] = $this->input->post('nama_produk');
 						$in_data['harga'] = $this->input->post('harga');
@@ -1640,7 +1670,7 @@ class adminweb extends CI_Controller {
 						$in_data['deskripsi'] = $this->input->post('deskripsi');
 						$in_data['kategori_id'] = $this->input->post('kategori_id');
 						$in_data['brand_id'] = $this->input->post('brand_id');
-					
+
 						$this->db->update("tbl_produk",$in_data,$id);
 
 					$this->session->set_flashdata('update','Produk Berhasil Diupdate');
@@ -1651,75 +1681,75 @@ class adminweb extends CI_Controller {
 					$config['upload_path'] = './images/produk/';
 					$config['allowed_types']= 'gif|jpg|png|jpeg';
 					$config['encrypt_name']	= TRUE;
-					$config['remove_spaces']	= TRUE;	
+					$config['remove_spaces']	= TRUE;
 					$config['max_size']     = '3000';
 					$config['max_width']  	= '268';
 					$config['max_height']  	= '249';
-					
-			 
+
+
 					$this->load->library('upload', $config);
-	 
+
 					if ($this->upload->do_upload("userfile")) {
 						$data	 	= $this->upload->data();
-			 
+
 						/* PATH */
 						$source             = "./images/produk/".$data['file_name'] ;
 						$destination_thumb	= "./images/produk/thumb/" ;
 						$destination_medium	= "./images/produk/medium/" ;
-			 
+
 						// Permission Configuration
 						chmod($source, 0777) ;
-			 
+
 						/* Resizing Processing */
 						// Configuration Of Image Manipulation :: Static
 						$this->load->library('image_lib') ;
 						$img['image_library'] = 'GD2';
 						$img['create_thumb']  = TRUE;
 						$img['maintain_ratio']= TRUE;
-			 
+
 						/// Limit Width Resize
 						$limit_medium   = 268 ;
 						$limit_thumb    = 249 ;
-			 
+
 						// Size Image Limit was using (LIMIT TOP)
 						$limit_use  = $data['image_width'] > $data['image_height'] ? $data['image_width'] : $data['image_height'] ;
-			 
+
 						// Percentase Resize
 						if ($limit_use > $limit_thumb) {
 							$percent_medium = $limit_medium/$limit_use ;
 							$percent_thumb  = $limit_thumb/$limit_use ;
 						}
-			 
+
 						//// Making THUMBNAIL ///////
 						$img['width']  = $limit_use > $limit_thumb ?  $data['image_width'] * $percent_thumb : $data['image_width'] ;
 						$img['height'] = $limit_use > $limit_thumb ?  $data['image_height'] * $percent_thumb : $data['image_height'] ;
-			 
+
 						// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_thumb ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
 						$this->image_lib->clear() ;
-	 
+
 						////// Making MEDIUM /////////////
 						$img['width']   = $limit_use > $limit_medium ?  $data['image_width'] * $percent_medium : $data['image_width'] ;
 						$img['height']  = $limit_use > $limit_medium ?  $data['image_height'] * $percent_medium : $data['image_height'] ;
-			 
+
 						// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_medium ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
 						$this->image_lib->clear() ;
-						
+
 						$in_data['kode_produk'] = $this->input->post('kode_produk');
 						$in_data['nama_produk'] = $this->input->post('nama_produk');
 						$in_data['harga'] = $this->input->post('harga');
@@ -1728,15 +1758,15 @@ class adminweb extends CI_Controller {
 						$in_data['kategori_id'] = $this->input->post('kategori_id');
 						$in_data['brand_id'] = $this->input->post('brand_id');
 						$in_data['gambar'] = $data['file_name'];
-						
+
 						$this->db->update("tbl_produk",$in_data,$id);
-				
-						
+
+
 						$this->session->set_flashdata('update','Produk Berhasil Diupdate');
 						redirect("adminweb/produk");
-						
+
 					}
-					else 
+					else
 					{
 						$this->template->load('template','adminweb/produk/error');
 					}
@@ -1746,16 +1776,16 @@ class adminweb extends CI_Controller {
 
 	//Akhir Produk
 
-	//Awal Slider 
+	//Awal Slider
 	public function slider () {
 
 		$data['data_slider'] = $this->admin_model->GetSlider();
 		$this->template->load('template','adminweb/slider/index',$data);
 	}
-	
+
 
 	public function slider_tambah(){
-		
+
 		$this->template->load('template','adminweb/slider/add');
 	}
 
@@ -1772,7 +1802,7 @@ class adminweb extends CI_Controller {
 
 			if(empty($_FILES['userfile']['name']))
 				{
-					
+
 						$in_data['tittle'] = $this->input->post('tittle');
 						$in_data['description'] = $this->input->post('description');
 						$in_data['status'] = $this->input->post('status');
@@ -1786,54 +1816,54 @@ class adminweb extends CI_Controller {
 					$config['upload_path'] = './images/slider/';
 					$config['allowed_types']= 'gif|jpg|png|jpeg';
 					$config['encrypt_name']	= TRUE;
-					$config['remove_spaces']	= TRUE;	
+					$config['remove_spaces']	= TRUE;
 					$config['max_size']     = '3000';
 					$config['max_width']  	= '484';
 					$config['max_height']  	= '441';
-					
-			 
+
+
 					$this->load->library('upload', $config);
-	 
+
 					if ($this->upload->do_upload("userfile")) {
 						$data	 	= $this->upload->data();
-			 
+
 						/* PATH */
 						$source             = "./images/slider/".$data['file_name'] ;
 						$destination_thumb	= "./images/slider/thumb/" ;
 						$destination_medium	= "./images/slider/medium/" ;
 						// Permission Configuration
 						chmod($source, 0777) ;
-			 
+
 						/* Resizing Processing */
 						// Configuration Of Image Manipulation :: Static
 						$this->load->library('image_lib') ;
 						$img['image_library'] = 'GD2';
 						$img['create_thumb']  = TRUE;
 						$img['maintain_ratio']= TRUE;
-			 
+
 						/// Limit Width Resize
 						$limit_medium   = 481 ;
 						$limit_thumb    = 441 ;
-			 
+
 						// Size Image Limit was using (LIMIT TOP)
 						$limit_use  = $data['image_width'] > $data['image_height'] ? $data['image_width'] : $data['image_height'] ;
-			 
+
 						// Percentase Resize
 						if ($limit_use > $limit_thumb) {
 							$percent_medium = $limit_medium/$limit_use ;
 							$percent_thumb  = $limit_thumb/$limit_use ;
 						}
-			 
+
 						//// Making THUMBNAIL ///////
 						$img['width']  = $limit_use > $limit_thumb ?  $data['image_width'] * $percent_thumb : $data['image_width'] ;
 						$img['height'] = $limit_use > $limit_thumb ?  $data['image_height'] * $percent_thumb : $data['image_height'] ;
-			 
+
 						// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_thumb ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
@@ -1841,36 +1871,36 @@ class adminweb extends CI_Controller {
 
 						$img['width']   = $limit_use > $limit_medium ?  $data['image_width'] * $percent_medium : $data['image_width'] ;
 						$img['height']  = $limit_use > $limit_medium ?  $data['image_height'] * $percent_medium : $data['image_height'] ;
-			 
+
 			 			// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_medium ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
 						$this->image_lib->clear() ;
-						
+
 						$in_data['tittle'] = $this->input->post('tittle');
 						$in_data['description'] = $this->input->post('description');
 						$in_data['status'] = $this->input->post('status');
 						$in_data['gambar'] = $data['file_name'];
-						
-						
-						
+
+
+
 						$this->db->insert("tbl_slider",$in_data);
 
-						
 
-				
-						
+
+
+
 						$this->session->set_flashdata('berhasil','Slider Berhasil Disimpan');
 						redirect("adminweb/slider");
-						
+
 					}
-					else 
+					else
 					{
 						$this->template->load('template','adminweb/slider/error');
 					}
@@ -1897,10 +1927,10 @@ class adminweb extends CI_Controller {
 			$data['tittle']= $tampil['tittle'];
 			$data['description']= $tampil['description'];
 			$data['status']= $tampil['status'];
-			
-			
+
+
 		}
-		
+
 		$this->template->load('template','adminweb/slider/edit',$data);
 	}
 
@@ -1909,12 +1939,12 @@ class adminweb extends CI_Controller {
 
 		if(empty($_FILES['userfile']['name']))
 				{
-					
+
 						$in_data['tittle'] = $this->input->post('tittle');
 						$in_data['description'] = $this->input->post('description');
 						$in_data['status'] = $this->input->post('status');
-						
-					
+
+
 						$this->db->update("tbl_slider",$in_data,$id);
 
 					$this->session->set_flashdata('update','Slider Berhasil Diupdate');
@@ -1925,88 +1955,88 @@ class adminweb extends CI_Controller {
 					$config['upload_path'] = './images/slider/';
 					$config['allowed_types']= 'gif|jpg|png|jpeg';
 					$config['encrypt_name']	= TRUE;
-					$config['remove_spaces']	= TRUE;	
+					$config['remove_spaces']	= TRUE;
 					$config['max_size']     = '3000';
 					$config['max_width']  	= '481';
 					$config['max_height']  	= '441';
-					
-			 
+
+
 					$this->load->library('upload', $config);
-	 
+
 					if ($this->upload->do_upload("userfile")) {
 						$data	 	= $this->upload->data();
-			 
+
 						/* PATH */
 						$source             = "./images/slider/".$data['file_name'] ;
 						$destination_thumb	= "./images/slider/thumb/" ;
 						$destination_medium	= "./images/slider/medium/" ;
-			 
+
 						// Permission Configuration
 						chmod($source, 0777) ;
-			 
+
 						/* Resizing Processing */
 						// Configuration Of Image Manipulation :: Static
 						$this->load->library('image_lib') ;
 						$img['image_library'] = 'GD2';
 						$img['create_thumb']  = TRUE;
 						$img['maintain_ratio']= TRUE;
-			 
+
 						/// Limit Width Resize
 						$limit_medium   = 481 ;
 						$limit_thumb    = 441 ;
-			 
+
 						// Size Image Limit was using (LIMIT TOP)
 						$limit_use  = $data['image_width'] > $data['image_height'] ? $data['image_width'] : $data['image_height'] ;
-			 
+
 						// Percentase Resize
 						if ($limit_use > $limit_thumb) {
 							$percent_medium = $limit_medium/$limit_use ;
 							$percent_thumb  = $limit_thumb/$limit_use ;
 						}
-			 
+
 						//// Making THUMBNAIL ///////
 						$img['width']  = $limit_use > $limit_thumb ?  $data['image_width'] * $percent_thumb : $data['image_width'] ;
 						$img['height'] = $limit_use > $limit_thumb ?  $data['image_height'] * $percent_thumb : $data['image_height'] ;
-			 
+
 						// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_thumb ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
 						$this->image_lib->clear() ;
-	 
+
 						////// Making MEDIUM /////////////
 						$img['width']   = $limit_use > $limit_medium ?  $data['image_width'] * $percent_medium : $data['image_width'] ;
 						$img['height']  = $limit_use > $limit_medium ?  $data['image_height'] * $percent_medium : $data['image_height'] ;
-			 
+
 						// Configuration Of Image Manipulation :: Dynamic
 						$img['thumb_marker'] = '';
 						$img['quality']      = '100%' ;
 						$img['source_image'] = $source ;
 						$img['new_image']    = $destination_medium ;
-			 
+
 						// Do Resizing
 						$this->image_lib->initialize($img);
 						$this->image_lib->resize();
 						$this->image_lib->clear() ;
-						
+
 						$in_data['tittle'] = $this->input->post('tittle');
 						$in_data['description'] = $this->input->post('description');
 						$in_data['status'] = $this->input->post('status');
 						$in_data['gambar'] = $data['file_name'];
-						
+
 						$this->db->update("tbl_slider",$in_data,$id);
-				
-						
+
+
 						$this->session->set_flashdata('update','Slider Berhasil Diupdate');
 						redirect("adminweb/slider");
-						
+
 					}
-					else 
+					else
 					{
 						$this->template->load('template','adminweb/slider/error');
 					}
@@ -2034,7 +2064,7 @@ class adminweb extends CI_Controller {
 
 		$id = $this->uri->segment(3);
 		$this->admin_model->DeleteBukuTamu($id);
-		
+
 		$this->session->set_flashdata('message','Pesan Berhasil Dihapus');
 		redirect("adminweb/buku_tamu");
 	}
@@ -2055,7 +2085,7 @@ class adminweb extends CI_Controller {
 		}
 
 		$this->admin_model->UpdateStatusBukuTamu($status,$id);
-		
+
 		$this->template->load('template','adminweb/buku_tamu/detail',$data);
 	}
 
@@ -2090,9 +2120,9 @@ class adminweb extends CI_Controller {
 
 		$this->load->library('email');
 		$this->email->from('info@adriano.com', 'Adriano MX Online Shop');
-		$this->email->to($email); 	
+		$this->email->to($email);
 		$this->email->subject($judul);
-		$this->email->message($isi_hubungi_kami_kirim);	
+		$this->email->message($isi_hubungi_kami_kirim);
 		$this->email->send();
 	}
 
@@ -2116,9 +2146,9 @@ class adminweb extends CI_Controller {
 
 		$this->load->library('email');
 		$this->email->from('info@adriano.com', 'Adriano MX Online Shop');
-		$this->email->to($email); 	
+		$this->email->to($email);
 		$this->email->subject($judul);
-		$this->email->message($isi_hubungi_kami_kirim);	
+		$this->email->message($isi_hubungi_kami_kirim);
 		$this->email->send();
 	}
 
@@ -2139,7 +2169,7 @@ class adminweb extends CI_Controller {
 
 		$id = $this->uri->segment(3);
 		$this->admin_model->DeleteBukuTamuKirim($id);
-		
+
 		$this->session->set_flashdata('message','Pesan Berhasil Dihapus');
 		redirect("adminweb/buku_tamu_kirim");
 	}
@@ -2153,10 +2183,10 @@ class adminweb extends CI_Controller {
 			$data['kepada'] = $tampil['kepada'];
 			$data['judul'] = $tampil['judul'];
 			$data['isi_hubungi_kami_kirim'] = $tampil['isi_hubungi_kami_kirim'];
-			
+
 		}
 
-		
+
 		$this->template->load('template','adminweb/buku_tamu/detail_kirim',$data);
 	}
 	//Akhir Buku Tamu
@@ -2205,7 +2235,7 @@ class adminweb extends CI_Controller {
 			$id  			= $this->uri->segment(3);
 			$kode_transaksi = $this->uri->segment(4);
 
-			$data['data_header'] 	= $this->admin_model->GetTransaksiheader($id);  
+			$data['data_header'] 	= $this->admin_model->GetTransaksiheader($id);
 			$data['data_detail']	= $this->admin_model->GetDetailTransaksi($kode_transaksi);
 			$data['data_total']		= $this->admin_model->GetDetailTotal($kode_transaksi);
 
@@ -2241,7 +2271,7 @@ class adminweb extends CI_Controller {
 			$id  			= $this->uri->segment(3);
 			$kode_transaksi = $this->uri->segment(4);
 
-			$data['data_header'] 	= $this->admin_model->GetTransaksiheader($id);  
+			$data['data_header'] 	= $this->admin_model->GetTransaksiheader($id);
 			$data['data_detail']	= $this->admin_model->GetDetailTransaksi($kode_transaksi);
 			$data['data_total']		= $this->admin_model->GetDetailTotal($kode_transaksi);
 

@@ -13,7 +13,7 @@
 						Data Berhasil Diupdate
 					</div>
 					<div id="box_error" class="alert alert-error hide">
-						Data Sudah Ada!
+						Isi Nama Kota atau Nama Kota sudah terdaftar !
 					</div>
 					<input type="hidden" name="id_kota" id="id_kota" value="<?php echo $id_kota;?>">
 

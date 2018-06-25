@@ -106,7 +106,7 @@
 				data:"nama_kota="+nama_kota,
 				success:function(data) {
 					if(data=="1") {
-						alert("Nama kota Sudah Ada");
+						alert("Isi Nama Kota atau Nama Kota sudah terdaftar !");
 					}
 					else {
 						window.location.reload();

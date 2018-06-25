@@ -101,7 +101,7 @@
 				data:"nama_kategori="+nama_kategori,
 				success:function(data) {
 					if(data=="1") {
-						alert("Nama Kategori Sudah Ada");
+						alert("Isi Nama Kategori atau Nama Kategori sudah terdaftar !");
 					}
 					else {
 						window.location.reload();

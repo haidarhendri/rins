@@ -106,7 +106,7 @@
 				data:"nama_brand="+nama_brand,
 				success:function(data) {
 					if(data=="1") {
-						alert("Nama brand Sudah Ada");
+						alert("Isi Nama Brand atau Nama Brand sudah Terdaftar !");
 					}
 					else {
 						window.location.reload();

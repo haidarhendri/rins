@@ -23,11 +23,8 @@
 					<div class="control-group">
 								<label class="control-label">Hak Akses</label>
 								<div class="controls">
-									<select id="select2_sample1" name="hak_akses" class="span6 select2">
-										<option value=""></option>
-										<option value="admin">Admin</option>
-										<option value="pegawai">Pegawai</option>
-
+									<select id="select2_sample1" name="hak_akses" class="span6 select2" readonly="true">
+										<option value="admin" readonly="true">Admin</option>
 									</select>
 								</div>
 					</div>
